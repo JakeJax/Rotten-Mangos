@@ -6,6 +6,9 @@ RottenMangos::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  #allows console to run on front end
+  config.web_console.whitelisted_ips = '10.0.2.2'
+
   # Do not eager load code on boot.
   config.eager_load = false
 

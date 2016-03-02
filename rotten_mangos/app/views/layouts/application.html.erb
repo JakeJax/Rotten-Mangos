@@ -5,6 +5,13 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+
+  <style type="text/css">
+  img {
+    max-height: 250px;
+    max-width: auto;
+  }
+  </style>
 </head>
 <body>
 
@@ -15,6 +22,7 @@
   <%= yield %>
 
   <%= render 'layouts/footer' %>
+  
 
 </body>
 </html>

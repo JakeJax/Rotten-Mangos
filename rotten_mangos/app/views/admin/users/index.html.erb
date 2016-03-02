@@ -1,0 +1,7 @@
+<h1>Rotten Mangoes - All Users</h1>
+<hr>
+<%= paginate @users %>
+<% @users.each do |user| %>
+  <p><%= user.id %> | <%= link_to user.firstname, admin_user_path(user) %> | <%= user.email %></p>
+  <hr>
+<% end %>

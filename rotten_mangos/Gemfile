@@ -42,6 +42,7 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
+  gem 'pry'
 end
 
 gem 'kaminari'

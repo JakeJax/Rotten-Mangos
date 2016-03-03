@@ -10,6 +10,13 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    UserMailer.deleted_user(@user).deliver
+    redirect_to admin_users_path
+  end
+
   private
 
   def check_admin_only

@@ -3,6 +3,9 @@ RottenMangos::Application.routes.draw do
   get "reviews/new"
   get "reviews/create"
   resources :movies do
+    collection do
+      get 'search'
+    end
     resources :reviews, only: [:new, :create]
   end
   resources :users, only: [:new, :create]

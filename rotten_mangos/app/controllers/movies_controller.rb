@@ -1,7 +1,18 @@
+require 'pry'
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.all
+    queries = []
+    queries << [:title, params[:title]] unless params[:title].blank?
+    queries << [:director, params[:director]] unless params[:director].blank?
+    queries << [:runtime, params[:runtime]] unless params[:runtime].blank?
+    # [[:title, "Mad Max"], [:runtime, "0"]]
+    # binding.pry
+    if queries.empty?
+      @movies = Movie.all
+    else
+      @movies = Movie.search(queries)
+    end
   end
 
   def show
@@ -41,6 +52,8 @@ class MoviesController < ApplicationController
     @movie.destroy
     redirect_to movies_path
   end
+
+  
 
   protected
 

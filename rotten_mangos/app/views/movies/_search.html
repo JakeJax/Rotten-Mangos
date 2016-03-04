@@ -1,4 +1,4 @@
-<form method="get" action="/movies">
+<!-- <form method="get" action="/movies">
   <label>Runtime</label>
   <select name="runtime">
     <option value="">select</option>
@@ -7,11 +7,23 @@
     <option value="2">Over 120 minutes</option>
   </select>
 
-  <label>Title</label>
-  <input type="text" name="title">
-
-  <label>Director</label>
-  <input type="text" name="director">
+  <label>Title or Director</label>
+  <input type="text" name="search_term">
 
   <input type="submit" value="Submit">
-</form>
+</form> -->
+
+
+<%= form_tag("/movies", method: "get") do %>
+<p>Search: </p>
+  <div>
+    <%= label_tag(:search_term, "Title or Director:") %><br>
+    <%= text_field_tag :search_term, params[:search_term] %>
+
+    <%= select_tag(:runtime_in_minutes,options_for_select([["Select", "0 AND 1000"], ["Under 90 minutes" , "0 AND 90" ], ["90 to 120 minutes" , "90 AND 120" ], ["Over 120 minutes" , "120 AND 1000" ]])) %>
+
+  </div>
+  <div>
+    <%= submit_tag("Search") %> 
+  </div>
+<% end %>

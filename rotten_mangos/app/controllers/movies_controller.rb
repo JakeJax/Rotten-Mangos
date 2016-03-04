@@ -2,17 +2,34 @@ require 'pry'
 class MoviesController < ApplicationController
 
   def index
-    queries = []
-    queries << [:title, params[:title]] unless params[:title].blank?
-    queries << [:director, params[:director]] unless params[:director].blank?
-    queries << [:runtime, params[:runtime]] unless params[:runtime].blank?
+    # queries = []
+    # queries << [:title, params[:title]] unless params[:title].blank?
+    # queries << [:director, params[:director]] unless params[:director].blank?
+    # queries << [:runtime, params[:runtime]] unless params[:runtime].blank?
     # [[:title, "Mad Max"], [:runtime, "0"]]
     # binding.pry
-    if queries.empty?
+    if params[:runtime_in_minutes].nil?
       @movies = Movie.all
     else
-      @movies = Movie.search(queries)
+    
+#     if params[:title].present?
+#       @movies= @movies.search_by_title(params[:title])
+#     end
+
+#     if !params[:director].present?
+#       @movies= @movies.search_by_director(params[:director])
+#     end
+
+    # if !params[:search_term].present?
+    #   @movies = @movies.search_term(params[:search_term])
+    # end
+
+      @movies = Movie.search_results(params[:search_term]).runtime_in_minutes(params[:runtime_in_minutes])
     end
+    # @movies = @movies.runtime(params[:search_term])
+# binding.pry
+    # @movies = @movies.search(params[:search] ||= "", params[:runtime] ||="")
+
   end
 
   def show
